@@ -2,16 +2,29 @@
 <head>
     <script src="js/apikey.js"></script>
     <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="js/youtube.js"></script>
     <link rel="stylesheet" type="text/css" href = "css/style.css">
 </head>
 <body>
-    <div id="playlist">
-        <h1>MY PLAYLIST</h1>
+    <div id="music">
+        <div id="list">
+            <h1>MY PLAYLIST</h1>
+            <table>
+                <tbody id="playlist_table_body">
+                    <tr>
+                        <td style="text-align: center;">Title</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="play">
+        </div>
     </div>
     <div id="search">
         <input id="search_keyword" type="text">
         <button onclick="getSearchResult()">print result!</button>
+        <button onclick="test()">DEBUG</button>
         <div id="result"></div>
     </div>
 </body>

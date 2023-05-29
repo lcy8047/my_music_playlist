@@ -6,7 +6,7 @@ html, body
     padding: 0px;
 }
 
-div#playlist
+div#music
 {
     float: left;
     width: 40%;
@@ -14,16 +14,39 @@ div#playlist
     background-color: papayawhip;
 }
 
+div#list
+{
+    width: 100%;
+    height: 70%;
+}
+
+div#play
+{
+    width: 100%;
+    height: 30%;
+}
+
 div#search
 {
-    float: right;
+    float: left;
     width: 60%;
     height: 100%;
     background-color: white;
 }
 
-div#playlist > h1
+div#list > h1
 {
     color: rgb(255, 143, 162);
     text-align: center;
+}
+
+table, tbody, tr, td
+{
+    border: 2px pink solid;
+    border-collapse: collapse;
+}
+
+td:first-child
+{
+    width: 300px;
 }

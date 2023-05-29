@@ -53,6 +53,64 @@ function addMusic( music_index )
         return;
     }
     my_music_list[my_music_count] = music_list[music_index];
-    document.getElementById( "playlist" ).innerHTML += music_list[music_index].snippet.title + "<br>";
     my_music_count ++;
+
+    let music_title = my_music_list[my_music_count-1].snippet.title;
+
+    document.getElementById( "playlist_table_body" ).innerHTML += "<tr><td>" + music_title + "</td></tr>"
+    // let music_rows = document.getElementById( "playlist_table_body" ).getElementsByTagName( "tr" );
+    // for ( let i = 1; i < music_rows.length; ++ i )
+    // {
+
+    // }
+}
+
+function test()
+{
+    let music_rows = document.getElementById( "playlist_table_body" ).getElementsByTagName( "tr" );
+    for ( let i = 1; i < music_rows.length; ++ i )
+    {
+        music_rows[i].innerHTML += "<button onclick=\"playMusic(" + (i - 1) + ")\">play</button>";
+    }
+}
+
+function playMusic( index )
+{
+    let music_item = my_music_list[index];
+    let video_src = "https://www.youtube.com/embed/" + music_item.id.videoId + "?enablejsapi=1";
+    let video_iframe = "<iframe id=\"cur_play\" style=\"width=100%;height=100%;\" src=" + video_src + "></iframe>";
+    // document.getElementById( "play" ).innerHTML = video_iframe;
+    var player = new YT.Player('play', {
+        videoId: music_item.id.videoId,
+        playerVars: {
+            'loop' : 1,
+            'autoplay': 1
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+    function onPlayerReady( event )
+    {
+        event.target.playVideo();
+    }
+    function onPlayerStateChange( event )
+    {
+        if ( event.data == YT.PlayerState.ENDED )
+        {
+            player.cueVideoById( {
+                videoId:my_music_list[index + 1].id.videoId,
+                startSeconds: 0,
+            })
+            player.playVideo();
+        }
+    }
+
+    // for ( let i = index + 1; i < my_music_count; ++ i )
+    // {
+    //     player.cueVideoById( {
+    //         videoId:my_music_list[i].id.videoId
+    //     })
+    // }
 }
