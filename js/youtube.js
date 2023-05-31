@@ -3,6 +3,8 @@ let my_music_list = new Array();
 let my_music_count = 0;
 let player;
 let played = false;
+let cur_played_music_idx = -1;
+
 function getSearchResult()
 {
     let searchKeyword = document.getElementById( "search_keyword" ).value;
@@ -69,14 +71,17 @@ function addMusic( music_index )
 
 function playMusic( index )
 {
+    if ( index >= my_music_count )
+    {
+        return;
+    }
+
     let music_item = my_music_list[index];
-    let video_src = "https://www.youtube.com/embed/" + music_item.id.videoId + "?enablejsapi=1";
-    let video_iframe = "<iframe id=\"cur_play\" style=\"width=100%;height=100%;\" src=" + video_src + "></iframe>";
 
     if ( played )
     {
         player.loadVideoById( music_item.id.videoId );
-        player.playvideo();
+        cur_played_music_idx = index;
     }
     else
     {
@@ -95,16 +100,14 @@ function playMusic( index )
         function onPlayerReady( event )
         {
             event.target.playVideo();
+            cur_played_music_idx = index;
         }
         function onPlayerStateChange( event )
         {
             if ( event.data == YT.PlayerState.ENDED )
             {
-                player.cueVideoById( {
-                    videoId:my_music_list[index + 1].id.videoId,
-                    startSeconds: 0,
-                })
-                player.playVideo();
+                console.log( "music is done" + cur_played_music_idx );
+                playMusic( cur_played_music_idx + 1 );
             }
         }
     }
