@@ -53,7 +53,7 @@ function addMusic( music_index )
         return element == music_list[music_index];
     });
     if ( find != undefined ) {
-        alert( "이미 추가된 음악입니다" );
+        alert( "This music is in your list already" );
         return;
     }
     my_music_list[my_music_count] = music_list[music_index];
@@ -86,7 +86,9 @@ function playMusic( index )
     else
     {
         played = true;
-        player = new YT.Player('play', {
+        player = new YT.Player('video_play', {
+            width: '100%',
+            height: '240',
             videoId: music_item.id.videoId,
             playerVars: {
                 'loop' : 1,

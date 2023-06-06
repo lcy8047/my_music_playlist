@@ -8,54 +8,62 @@
     <link rel="stylesheet" type="text/css" href = "css/style.css">
 </head>
 <body>
-    <div id="music">
+    <div id="music" class="window">
+        <h1>MY PLAYLIST</h1>
         <div id="list">
-            <h1>MY PLAYLIST</h1>
             <table>
                 <tbody id="playlist_table_body">
                     <tr>
-                        <td style="text-align: center;">Title</td>
+                        <td>Title</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div id="play">
+            <div id="video_play"></div>
         </div>
     </div>
-    <div id="search">
-        <div id="search_in_youtube">
-            <input id="search_keyword" type="text">
-            <button onclick="getSearchResult()">print result!</button>
+    <div id="search" class="window">
+
+        <input id="search_keyword" autocomplete="off" type="text">
+        <button onclick="getSearchResult()">print result!</button>
+        
+        <div id="search_in_youtube" class="window">
             <div id="result"></div>
         </div>
+        
+
+        <button onclick="getMusicRecommendation()">Recommendation</button>
+        <button class="recommend_set_open_btn">Mood & Genre setting</button>
+        
         <div = id="recommend">
-            <button onclick="getMusicRecommendation()">recommnadation</button>
-            <button class="recommend_set_open">recommend setting</button>
             <div class="recommend_set_modal hidden">
                 <div class="modal_background"></div>
-                <div class="recommend_modal_box">
+                
+                <div class="recommend_modal_box">    
                     <div id="mood">
                         select mood<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="" checked> 선택하지 않음<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="밝은"> 밝은<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="슬픈"> 슬픈<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="잔잔한"> 잔잔한<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="신나는"> 신나는<br>
-                        <input type="radio" onclick="setMood(this.value)" name="mood" value="몽환적인"> 몽환적인<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="" checked> No select<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="Energetic"> Energetic<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="Happy"> Happy<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="Calm"> Calm<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="Depression"> Depression<br>
+                        <input type="radio" autocomplete="off" onclick="setMood(this.value)" name="mood" value="Sad"> Sad<br>
                     </div>
+                    
                     <div id="genre">
                         select genre<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="" checked> 선택하지 않음<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="팝송"> 팝송<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="발라드"> 발라드<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="댄스"> 댄스<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="R&B"> R&B<br>
-                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="트로트"> 트로트<br>
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="" checked> No select<br>
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="Pop"> Pop<br>
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="Ballad"> Ballad<br> 
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="Dance"> Dance<br>
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="R&B"> R&B<br>
+                        <input type="radio" autocomplete="off" onclick="setGenre(this.value)" name="genre" value="Hip-hop"> Hip-hop<br>
                     </div>
-                    <button class="recommend_set_close">x</button>
+                    <button class="recommend_set_close_btn">x</button>
                 </div>
             </div>
-            <div id="current_setting"></div>
+            <div id="current_setting">Mood : <span id="current_mood">None</span>, Genre : <span id="current_genre">None</span></div>
             <div id="recommend_result"></div>
         </div>
     </div>
@@ -68,8 +76,8 @@
             document.querySelector( ".recommend_set_modal" ).classList.add( "hidden" );
         }
 
-        document.querySelector( ".recommend_set_open" ).addEventListener( "click", recommend_setting_window_open );
-        document.querySelector( ".recommend_set_close" ).addEventListener( "click", recommend_setting_window_close );
+        document.querySelector( ".recommend_set_open_btn" ).addEventListener( "click", recommend_setting_window_open );
+        document.querySelector( ".recommend_set_close_btn" ).addEventListener( "click", recommend_setting_window_close );
         document.querySelector( ".modal_background" ).addEventListener( "click", recommend_setting_window_close );
     </script>
 </body>

@@ -1,52 +1,76 @@
 html, body
 {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin: 0px;
     padding: 0px;
+    background-color: papayawhip;
 }
 
 div#music
 {
     float: left;
-    width: 40%;
-    height: 100%;
-    background-color: papayawhip;
+    width: 39.5%;
+    height: 90%;
+    position : relative;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 div#list
 {
     width: 100%;
-    height: 70%;
+    /* height: 600px; */
+    flex: 1;
+    overflow-y: auto;
 }
 
 div#play
 {
     width: 100%;
-    height: 30%;
+    height: 240px;
+    position : relative;
+    bottom : 0;
+    border-top: 3px pink solid;
+    border-collapse: collapse;
+}
+
+div#music iframe
+{
+    width: 100%;
+    height: 240px;
+    position : absolute;
+    bottom : 0;
 }
 
 div#search
 {
     float: left;
-    width: 60%;
-    height: 100%;
-    background-color: white;
+    width: 59.5%;
+    height: 90%;
 }
 
 div#search_in_youtube
 {
     width: 100%;
-    height: 50%;
+    height: 60%;
 }
 
 div#recommend
 {
     width: 100%;
-    height: 50%;
+    height: 40%;
 }
 
-div#list > h1
+div#result
+{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+div#music > h1
 {
     color: rgb(255, 143, 162);
     text-align: center;
@@ -61,6 +85,7 @@ table, tbody, tr, td
 td:first-child
 {
     width: 300px;
+    text-align: center;
 }
 
 .recommend_set_modal
@@ -107,6 +132,13 @@ td:first-child
 {
     float: left;
     width: 50%;
-    height: 100%;
+    /* height: 100%; */
     text-align: center;
+}
+
+.window
+{
+    border-bottom: 3px pink solid;
+    border-right: 3px pink solid;
+    border-collapse: collapse;
 }
