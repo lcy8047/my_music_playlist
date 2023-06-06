@@ -4,6 +4,7 @@
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="js/youtube.js"></script>
+    <script src="js/music_recommend.js"></script>
     <link rel="stylesheet" type="text/css" href = "css/style.css">
 </head>
 <body>
@@ -22,8 +23,53 @@
         </div>
     </div>
     <div id="search">
-        <input id="search_keyword" type="text">
-        <button onclick="getSearchResult()">print result!</button>
-        <div id="result"></div>
+        <div id="search_in_youtube">
+            <input id="search_keyword" type="text">
+            <button onclick="getSearchResult()">print result!</button>
+            <div id="result"></div>
+        </div>
+        <div = id="recommend">
+            <button onclick="getMusicRecommendation()">recommnadation</button>
+            <button class="recommend_set_open">recommend setting</button>
+            <div class="recommend_set_modal hidden">
+                <div class="modal_background"></div>
+                <div class="recommend_modal_box">
+                    <div id="mood">
+                        select mood<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="" checked> 선택하지 않음<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="밝은"> 밝은<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="슬픈"> 슬픈<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="잔잔한"> 잔잔한<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="신나는"> 신나는<br>
+                        <input type="radio" onclick="setMood(this.value)" name="mood" value="몽환적인"> 몽환적인<br>
+                    </div>
+                    <div id="genre">
+                        select genre<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="" checked> 선택하지 않음<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="팝송"> 팝송<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="발라드"> 발라드<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="댄스"> 댄스<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="R&B"> R&B<br>
+                        <input type="radio" onclick="setGenre(this.value)" name="genre" value="트로트"> 트로트<br>
+                    </div>
+                    <button class="recommend_set_close">x</button>
+                </div>
+            </div>
+            <div id="current_setting"></div>
+            <div id="recommend_result"></div>
+        </div>
     </div>
+    <script>
+        const recommend_setting_window_open = () => {
+            document.querySelector( ".recommend_set_modal" ).classList.remove( "hidden" );
+        }
+
+        const recommend_setting_window_close = () => {
+            document.querySelector( ".recommend_set_modal" ).classList.add( "hidden" );
+        }
+
+        document.querySelector( ".recommend_set_open" ).addEventListener( "click", recommend_setting_window_open );
+        document.querySelector( ".recommend_set_close" ).addEventListener( "click", recommend_setting_window_close );
+        document.querySelector( ".modal_background" ).addEventListener( "click", recommend_setting_window_close );
+    </script>
 </body>
