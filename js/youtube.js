@@ -33,14 +33,22 @@ function getSearchResult()
     request.done( function ( msg ) {
         msg.items.forEach( ( item, index ) => {
             music_list[index] = item;
-            let video_title = item.snippet.title;
+            let video_title = document.createElement( "span" );
+            video_title.innerText = item.snippet.title;
+            video_title.classList.add( "text" );
             let video_src = "https://www.youtube.com/embed/" + item.id.videoId;
-            let video_iframe = "<iframe src=" + video_src + "></iframe>";
-            let add_button = "<button onclick=\"addMusic(" + index + ")\">Add</button>"
+            let video_iframe = document.createElement( "iframe" );
+            video_iframe.width = 150;
+            video_iframe.height = 75;
+            video_iframe.src = video_src;
+            let add_button = "<button onclick=\"addMusic(" + index + ")\" class='btn'>Add</button>"
 
-            document.getElementById( "result" ).innerHTML += video_title + "<br>";
-            document.getElementById( "result" ).innerHTML += video_iframe + "<br>";
+            document.getElementById( "result" ).appendChild( video_title );
+            document.getElementById( "result" ).innerHTML += "<br>";
+            document.getElementById( "result" ).appendChild( video_iframe );
+            document.getElementById( "result" ).innerHTML += "<br>";
             document.getElementById( "result" ).innerHTML += add_button + "<br>";
+            document.getElementById( "result" ).innerHTML += "<hr>";
         });
         
         console.log( msg );
@@ -61,7 +69,7 @@ function addMusic( music_index )
     let music_title = my_music_list[my_music_count].snippet.title;
     
     let music_row = "<tr><td>" + music_title + "</td>";
-    music_row += "<td><button onclick=\"playMusic(" + my_music_count + ")\">play</button></td>";
+    music_row += "<td><button onclick=\"playMusic(" + my_music_count + ")\" class='btn'>play</button></td>";
     music_row += "</tr>";
     
     document.getElementById( "playlist_table_body" ).innerHTML += music_row;

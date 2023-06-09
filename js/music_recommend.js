@@ -38,7 +38,7 @@ function getMusicRecommendation()
                 {
                     continue;
                 }
-                let search_button = "<button onclick='searchRecommendation( this )'>Search</button>"
+                let search_button = "<button onclick='searchRecommendation( this )' class='btn'>Search</button>"
                 document.getElementById( "recommend_result" ).innerHTML += "<div>" + result[i] + "</div>" + search_button + "<br>";
             }
         },
